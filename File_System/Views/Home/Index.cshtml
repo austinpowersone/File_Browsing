@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File browsing</title>
+    <link rel = "stylesheet" href = "~/Content/bootstrap.css" >
+</head>
+<body ng-app="directory-info-app">
+
+<div class="container" ng-controller="directory-info">			
+<h3>Current folder: {{Directory.path}}</h3>
+	<div>
+		<ul ng-repeat="directory in Directories">
+			<li>				
+				<a href = {{directory}} ng-click="folderClick(directory|urlencode)">{{directory}}</a>
+			</li>
+		</ul>
+	</div>
+	<h4>Number of files: {{Directory.files.length}}</h4>
+	<div class = "row">
+		<div class = "col-md-4">
+			<strong>Less 10mb</strong><br/>
+			<strong>Count {{Directory.less.length}}</strong>
+			<div ng-repeat="file in Directory.less">
+				<span>File name: </span><code>{{file.Name}}</code>
+				<span>File size: </span><code>{{file.Size}} byte</code>
+			</div>
+		</div>
+		<div class = "col-md-4">
+			<strong>10mb - 50mb</strong><br/>
+			<strong>Count {{Directory.between.length}}</strong>
+			<div ng-repeat="file in Directory.between">
+				<span>File name: </span><code>{{file.Name}}</code>
+				<span>File size: </span><code>{{file.Size}} byte</code>
+			</div>
+		</div>
+		<div class = "col-md-4">
+			<strong>More 100mb</strong><br/>
+			<strong>Count {{Directory.more.length}}</strong>
+			<div ng-repeat="file in Directory.more">
+				<span>File name: </span><code>{{file.Name}}</code>
+				<span>File size: </span><code>{{file.Size}} byte</code>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script src = "~/Scripts/angular.min.js"></script>
+<script src = "~/Scripts/directory-info-app.js"></script>
+<script src = "~/Scripts/jquery-1.9.1.min.js"></script>
+
+</body>
+</html>
